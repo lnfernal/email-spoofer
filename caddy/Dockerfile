@@ -10,8 +10,8 @@ RUN apk add --no-cache ca-certificates curl bind-tools jq
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY data /data/caddy
-COPY configure_cloudflare.sh /configure_cloudflare.sh
-RUN chmod +x /configure_cloudflare.sh
+COPY run.sh /run.sh
+RUN chmod +x /run.sh
 
-ENTRYPOINT [ "/configure_cloudflare.sh" ]
+ENTRYPOINT [ "/run.sh" ]
 CMD [ "caddy", "run", "--config", "/etc/caddy/Caddyfile" ]
