@@ -1,5 +1,5 @@
 FROM alpine:latest
-LABEL maintainer="MyBot Proxy mybotproxy@spoofme.com"
+LABEL maintainer="Mybot Proxy MybotProxy@spoof-me.com"
 # source https://github.com/Mailu/Mailu/tree/master/core/rspamd
 
 #ARG DOMAIN
@@ -20,15 +20,15 @@ RUN mkdir /var/lib/rspamd/dkim/
 
 COPY local.d/ /etc/rspamd/local.d
 COPY override.d/ /etc/rspamd/override.d
-COPY configure-rspamd.sh /
+COPY docker-entrypoint.sh /
 COPY lua_auth_results.lua /usr/share/rspamd/lualib/lua_auth_results.lua
-RUN chmod +x /configure-rspamd.sh
+RUN chmod +x /docker-entrypoint.sh
 
 # Ports for Rspamd
 EXPOSE 11332/tcp 11334/tcp 11335/tcp
 
 # Initialise configuration files and update DNS records
-ENTRYPOINT [ "/configure-rspamd.sh" ]
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
 # -i Ignore running workers as root, -f Do not daemonize main process
 CMD ["rspamd", "-i", "-f"]
