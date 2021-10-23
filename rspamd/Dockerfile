@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.12.0
 LABEL maintainer="Mybot Proxy MybotProxy@spoof-me.com"
 # source https://github.com/Mailu/Mailu/tree/master/core/rspamd
 
