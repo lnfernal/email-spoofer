@@ -11,7 +11,7 @@ services:
         - phish_net
 
   rspamd:
-    image: klanier/rspamd:0.2
+    image: klanier/rspamd:0.1
     container_name: rspamd
     volumes:
       - ./rspamd/lib/dkim:/var/lib/rspamd/dkim
@@ -23,7 +23,7 @@ services:
       - phish_net
 
   postfix:
-    image: klanier/postfix:0.2
+    image: klanier/postfix:0.1
     container_name: postfix
     env_file:
       - 'settings.env'
@@ -43,7 +43,7 @@ services:
       - phish_net
 
   caddy:
-    image: klanier/caddy:0.2
+    image: klanier/caddy:0.1
     container_name: caddy
     volumes:
       - ./caddy/data:/data/caddy
