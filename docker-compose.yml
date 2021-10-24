@@ -1,15 +1,15 @@
-version: "0.1"
+version: "3.5"
 services:
   
   redis:
-    image: klanier/redis:0.1
+    image: redis:alpine3.13
     container_name: redis
     restart: always
     ports:
         - "6379"
     networks:
         - phish_net
-  
+
   rspamd:
     image: klanier/rspamd:0.1
     container_name: rspamd
@@ -35,7 +35,7 @@ services:
       - phish_net
 
   gophish:
-    image: klanier/gophish:0.1
+    image: gophish/gophish:0.9.0
     depends_on:
       - postfix
       - caddy
